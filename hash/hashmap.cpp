@@ -2,24 +2,25 @@
 #include <vector>
 using namespace std;
 
-class node
+template<class K, class V>
+class bucket
 {
 public:
-    node* next;
+    bucket* next;
     int key;
     int value;
-    node(int k, int v):key(k), value(v){}
+    bucket(int k, int v):key(k), value(v){}
 };
 
 class list
 {
-    node* newNode( int k, int v)
+    bucket* newNode( int k, int v)
     {
-        return new node(k, v);
+        return new bucket(k, v);
     }
-    node* getNode(int key)
+    bucket* getNode(int key)
     {
-        node* res = NULL;
+        bucket* res = NULL;
         auto c = head;
         while(c)
         {
@@ -33,14 +34,14 @@ class list
         return res;
     }
 public:
-    node* head;
+    bucket* head;
     list():head(NULL){}
     bool push(int k, int v)
     {
-        node* exists = getNode(k);
+        bucket* exists = getNode(k);
         if (!exists)
         {
-            node* n = newNode(k, v);
+            bucket* n = newNode(k, v);
             n->next = head;
             head = n;
         }
@@ -52,7 +53,7 @@ public:
     void deleteKey(int k)
     {
         auto c = head;
-        node* p = NULL;
+        bucket* p = NULL;
         while (c)
         {
             if(k == c->key)
@@ -84,7 +85,7 @@ public:
     ~list()
     {
         auto c = head;
-        node* next = NULL;
+        bucket* next = NULL;
         while (c)
         {
             next = c->next;
@@ -97,13 +98,13 @@ public:
         auto res = getNode(k);
         return res ? res->value : -1;
     }
-    node* getHead()
+    bucket* getHead()
     {
         return head;
     }
     void print()
     {
-        node* c = head;
+        bucket* c = head;
         while(c)
         {
             cout << c->key << " ";
@@ -198,7 +199,7 @@ public:
 };
 
 
-int main()
+/*int main()
 {
     HashMap h(20);
 
@@ -221,4 +222,4 @@ int main()
 
     h.print();
 
-}
+}*/
