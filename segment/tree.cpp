@@ -63,9 +63,6 @@ protected:
         m_Tree[pos] = DoOperation(m_Tree[2*pos+1], m_Tree[2*pos+2]);
     }
 
-
-
-
     //                           0(0)
     //             1(1)                        0(2)
     //     3(3)          1(4)           0(5)            8(6)
@@ -184,7 +181,7 @@ int main ()
     minSg.UpdateSegTreeRange(0, 4, 3);
 
     minSg.Print();
-    cout << minSg.GetMin(3, 4) << '\n';
+    cout << minSg.GetMin(5, 7) << '\n';
 
     vector<ll> v2({3, 4, 5, 1, 2, 0, 8, 8});
     SumSegTree sSg(v2);
